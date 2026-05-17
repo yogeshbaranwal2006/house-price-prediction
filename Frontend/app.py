@@ -15,7 +15,7 @@ bedroom = st.selectbox(
 
 bathroom = st.selectbox(
     'Bathroom',
-    [1,2,3,4,5,6,6,7]
+    [1,2,3,4,5,6,7]
 )
 
 city = st.selectbox(
