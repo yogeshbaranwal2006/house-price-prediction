@@ -3,7 +3,7 @@ import requests
 
 st.title('House Price Prediction')
 
-total_area(In sqft) = st.number_input(
+total_area = st.number_input(
     'Total Area',
     min_value = 500
 )
