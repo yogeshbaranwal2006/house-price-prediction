@@ -42,7 +42,7 @@ if st.button('Predict'):
 
     else:
 
-        url = "http://127.0.0.1:8000/predict"
+        url = "https://house-price-prediction-skbh.onrender.com/predict"
 
         params = {
             "total_area": total_area,
