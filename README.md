@@ -38,7 +38,6 @@ Final Performance:
 | MAE | 0.356 |
 | RMSE | 0.218 |
 
-
 ##  Feature Engineering
 
 Created:
