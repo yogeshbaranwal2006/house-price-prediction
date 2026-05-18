@@ -54,7 +54,7 @@ def predict_price(
     area_per_bedroom = total_area / bedroom
     bathroom_per_bedroom = bathroom / bedroom
     total_rooms = bedroom + bathroom + 2
-    room_density = (bedroom/bathroom) / 2
+    room_density = (bedroom/bathroom) / total_area
     bathroom_bonus = bedroom * bathroom
     luxury_home = int(
         (total_area > 3000) and (bathroom >= 4)

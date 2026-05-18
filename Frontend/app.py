@@ -5,7 +5,9 @@ st.title('House Price Prediction')
 
 total_area = st.number_input(
     'Total Area(In sqft)',
-    min_value = 500
+    min_value = 500,
+    max_value = 10000,
+    value = 1000
 )
 
 bedroom = st.selectbox(
