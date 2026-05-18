@@ -1,50 +1,69 @@
 import streamlit as st
 import requests
 
-st.title('House Price Prediction')
+# PAGE SETTINGS
+
+st.set_page_config(
+    page_title="House Price Prediction",
+    layout="centered"
+)
+
+st.title("House Price Prediction")
+
+# INPUTS
 
 total_area = st.number_input(
-    'Total Area(In sqft)',
-    min_value = 500,
-    max_value = 10000,
-    value = 1000
+    "Total Area (In sqft)",
+    min_value=500,
+    max_value=10000,
+    value=1000
 )
 
 bedroom = st.selectbox(
-    'Bedroom',
+    "Bedroom",
     [1,2,3,4,5,6]
 )
 
 bathroom = st.selectbox(
-    'Bathroom',
+    "Bathroom",
     [1,2,3,4,5,6,7]
 )
 
 city = st.selectbox(
-    'City',
+    "City",
     [
-        'Delhi',
-        'Gurgaon',
-        'Noida',
-        'Ghaziabad',
-        'Faridabad'
+        "Delhi",
+        "Gurgaon",
+        "Noida",
+        "Ghaziabad",
+        "Faridabad"
     ]
 )
 
-if st.button('Predict'):
+# PREDICT BUTTON
+
+if st.button("Predict"):
+
+    # Validation
+
     if total_area < bedroom * 200:
+
         st.error(
-            'Total area too small for selected bedrooms'
+            "Total area too small for selected bedrooms"
         )
 
     elif bathroom > bedroom + 2:
+
         st.error(
-            'Bathrooms look unrealistic'
-        )     
+            "Bathrooms look unrealistic"
+        )
 
     else:
 
-        url = "https://house-price-prediction-skbh.onrender.com/predict"
+        # LOCAL FASTAPI URL
+        # change later to Render URL after deployment
+
+        url = "http://127.0.0.1:8000/predict"
 
         params = {
             "total_area": total_area,
@@ -53,7 +72,7 @@ if st.button('Predict'):
             "city": city
         }
 
-        try: 
+        try:
 
             response = requests.post(
                 url,
@@ -65,22 +84,42 @@ if st.button('Predict'):
                 result = response.json()
 
                 price = float(
-                    result['Predicted Price']
-                    .replace('₹', '')
+                    result["Predicted Price"]
+                    .replace("₹", "")
+                    .replace(",", "")
+                    .strip()
                 )
 
-                crore = price / 10000000
+                # Dynamic display
+
+                if price >= 10000000:
+
+                    crore = price / 10000000
+
+                    display_price = (
+                        f"₹ {crore:.2f} Crore"
+                    )
+
+                else:
+
+                    lakh = price / 100000
+
+                    display_price = (
+                        f"₹ {lakh:.2f} Lakh"
+                    )
 
                 st.success(
-                    f"Predicted Price: ₹ {crore:.2f} Crore"
+                    f"Predicted Price: {display_price}"
                 )
+
             else:
 
                 st.error(
-                    'Prediction Failed'
-                )    
-        except:
+                    f"Prediction failed ({response.status_code})"
+                )
+
+        except Exception as e:
 
             st.error(
-                'Backend not running. Start FastAPI server.'
-            )        
+                f"Backend not running: {e}"
+            )

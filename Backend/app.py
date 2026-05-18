@@ -6,8 +6,8 @@ import pickle
 
 # LOAD MODEL & COLUMNS
 
-model = pickle.load(open("house_price_model (4).pkl", "rb"))
-model_columns = pickle.load(open("model_columns (4).pkl", "rb"))
+model = pickle.load(open("house_price_model (7).pkl", "rb"))
+model_columns = pickle.load(open("model_columns (7).pkl", "rb"))
 
 # FASTAPI APP
 
@@ -54,7 +54,7 @@ def predict_price(
     area_per_bedroom = total_area / bedroom
     bathroom_per_bedroom = bathroom / bedroom
     total_rooms = bedroom + bathroom + 2
-    room_density = (bedroom/bathroom) / total_area
+    room_density = (bedroom + bathroom) / total_area
     bathroom_bonus = bedroom * bathroom
     luxury_home = int(
         (total_area > 3000) and (bathroom >= 4)
@@ -81,7 +81,6 @@ def predict_price(
 
     # ONE HOT ENCODING
 
-
     city_col = f"city_{city.value}"
 
     if city_col in input_dict:
@@ -103,11 +102,11 @@ def predict_price(
 
     final_price = np.expm1(prediction)
 
+    final_price = final_price * (1 + (bathroom - 1) * 0.02)
+
     # RETURN RESPONSE
 
     return {
         "Predicted Price": f"₹ {round(final_price, 2)}"
     }
-
-
 
