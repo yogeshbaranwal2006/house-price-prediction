@@ -63,7 +63,7 @@ if st.button("Predict"):
         # LOCAL FASTAPI URL
         # change later to Render URL after deployment
 
-        url = "http://127.0.0.1:8000/predict"
+        url = "https://house-price-prediction-skbh.onrender.com/predict"
 
         params = {
             "total_area": total_area,
