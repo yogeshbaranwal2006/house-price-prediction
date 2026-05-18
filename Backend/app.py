@@ -6,8 +6,8 @@ import pickle
 
 # LOAD MODEL & COLUMNS
 
-model = pickle.load(open("house_price_model (3).pkl", "rb"))
-model_columns = pickle.load(open("model_columns (3).pkl", "rb"))
+model = pickle.load(open("house_price_model (4).pkl", "rb"))
+model_columns = pickle.load(open("model_columns (4).pkl", "rb"))
 
 # FASTAPI APP
 
