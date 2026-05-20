@@ -10,19 +10,28 @@ st.set_page_config(
 
 st.title("House Price Prediction")
 
-st.markdown(""" 
-Predict estimated house prices using a machine learning model.
-            
-**Feature used:**
- - Total Area (sqft)
- - Bedrooms
- - Bathrooms
- - City
+with st.expander("About this Project"):
 
- **Model:** XGBoost Regressor
+    st.markdown(""" 
+    Predict estimated house prices using a machine learning model.
             
- **Tech Stack:** Python, FastAPI, Streamlit                                                                              
-""")
+    **Feature used:**
+    - Total Area (sqft)
+    - Bedrooms
+    - Bathrooms
+    - City
+                
+    Model Used: 
+    -XGBoost Regressor
+            
+    Tech Stack: 
+    -Python
+    -FastAPI
+    -Streamlit                                                                              
+    """)
+
+
+
 
 # INPUTS
 
