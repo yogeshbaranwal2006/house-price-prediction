@@ -34,9 +34,9 @@ Final Performance:
 
 | Metric | Score |
 |----------|------|
-| R² Score | 0.75 |
-| MAE | 0.356 |
-| RMSE | 0.218 |
+| R² Score | 0.73 |
+| MAE | 0.366 |
+| RMSE | 0.230 |
 
 ##  Feature Engineering
 

@@ -10,6 +10,20 @@ st.set_page_config(
 
 st.title("House Price Prediction")
 
+st.markdown(""" 
+Predict estimated house prices using a machine learning model.
+            
+**Feature used:**
+ - Total Area (sqft)
+ - Bedrooms
+ - Bathrooms
+ - City
+
+ **Model:** XGBoost Regressor
+            
+ **Tech Stack:** Python, FastAPI, Streamlit                                                                              
+""")
+
 # INPUTS
 
 total_area = st.number_input(
@@ -60,8 +74,7 @@ if st.button("Predict"):
 
     else:
 
-        # LOCAL FASTAPI URL
-        # change later to Render URL after deployment
+        # Render URL 
 
         url = "https://house-price-prediction-skbh.onrender.com/predict"
 
